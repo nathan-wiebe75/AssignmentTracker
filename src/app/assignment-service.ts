@@ -57,11 +57,15 @@ export class AssignmentService {
 
   }
 
-  toggleComplete(assignment: Assignment){
-    if(assignment.isComplete){
-      assignment.isComplete = false;
-    } else {
-      assignment.isComplete = true;
+  toggleComplete(id: number){
+    const assignment = this.assignments().find(t => t.id === id);
+
+    if(assignment){
+      if(assignment.isComplete == true){
+        assignment.isComplete = false;
+      } else {
+        assignment.isComplete = true;
+      }
     }
   }
 }

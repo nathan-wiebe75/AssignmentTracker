@@ -16,12 +16,16 @@ export class AssignmentService {
   getAssignments(){
     return this.assignments;
   }
-  
+
   getAssignment(id: number): Assignment | undefined{
     return this.assignments().find((assignment) => assignment.id === id);
   }
 
-  addAssignment(assignment: Assignment): void{}
+  addAssignment(newAssignment: Assignment): void{
+    this.assignments.update(assignments => [
+      ...assignments, newAssignment]
+    );
+  }
 
 
   updateName(id: number, newName: string): void{
@@ -49,6 +53,7 @@ export class AssignmentService {
   }
 
   deleteAssignment(id: number): void{
+    this.assignments.update(assignments => assignments.filter(t => t.id !== id));
 
   }
 

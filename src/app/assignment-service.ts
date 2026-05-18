@@ -12,27 +12,40 @@ const initialItems: Assignment[] = [
 })
 export class AssignmentService {
   assignments = signal<Assignment[]>(initialItems);
+
   getAssignments(){
     return this.assignments;
   }
+  
   getAssignment(id: number): Assignment | undefined{
     return this.assignments().find((assignment) => assignment.id === id);
   }
 
   addAssignment(assignment: Assignment): void{}
 
-  //updateAssignment(assignment: Assignment){}
 
-  updateName(newName: string): void{
-    this.assignment.name = newName;
+  updateName(id: number, newName: string): void{
+    const assignment = this.assignments().find((t) => t.id === id);
+
+    if(assignment){
+      assignment.name = newName;
+    }
   }
   
-  updateClass(newClass: string): void{
-    this.assignment.className = newClass;
+  updateClass(id: number, newClass: string): void{
+    const assignment = this.assignments().find(t => t.id === id);
+
+    if(assignment){
+      assignment.className = newClass;
+    }
   }
 
-  updateDueDate(newDue: string): void{
-    this.assignment.dueDate = newDue;
+  updateDueDate(id: number, newDue: string): void{
+    const assignment = this.assignments().find(t => t.id === id);
+
+    if(assignment){
+      assignment.dueDate = newDue;
+    }
   }
 
   deleteAssignment(id: number): void{

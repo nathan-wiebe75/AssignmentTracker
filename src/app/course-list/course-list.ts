@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { Course } from '../course';
 
 @Component({
   selector: 'app-course-list',
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './course-list.html',
   styleUrl: './course-list.css',
 })
-export class CourseList {}
+export class CourseList {
+  courses = input.required<Course[]>();
+}

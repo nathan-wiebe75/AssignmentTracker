@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { Assignment } from '../assignment';
 
 @Component({
   selector: 'app-assignment-list',
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './assignment-list.html',
   styleUrl: './assignment-list.css',
 })
-export class AssignmentList {}
+export class AssignmentList {
+  assignments = input.required<Assignment>();
+}

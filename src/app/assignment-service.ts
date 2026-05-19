@@ -29,27 +29,27 @@ export class AssignmentService {
 
 
   updateName(id: number, newName: string): void{
-    const assignment = this.assignments().find((t) => t.id === id);
-
-    if(assignment){
-      assignment.name = newName;
-    }
+    this.assignments.update(assignments =>
+      assignments.map(a => a.id === id ? {...a, name: newName} : a)
+    );
   }
   
   updateClass(id: number, newClass: string): void{
-    const assignment = this.assignments().find(t => t.id === id);
+    this.assignments.update(assignments =>
+      assignments.map(a => a.id === id ? {...a, className: newClass} : a)
+    );
+  }
 
-    if(assignment){
-      assignment.className = newClass;
-    }
+  updateCategory(id: number, newCategory: string){
+    this.assignments.update(assignments =>
+      assignments.map(a => a.id === id ? {...a, category: newCategory} : a)
+    );
   }
 
   updateDueDate(id: number, newDue: string): void{
-    const assignment = this.assignments().find(t => t.id === id);
-
-    if(assignment){
-      assignment.dueDate = newDue;
-    }
+    this.assignments.update(assignments =>
+      assignments.map(a => a.id === id ? {...a, dueDate: newDue} : a)
+    );
   }
 
   deleteAssignment(id: number): void{
@@ -58,14 +58,8 @@ export class AssignmentService {
   }
 
   toggleComplete(id: number){
-    const assignment = this.assignments().find(t => t.id === id);
-
-    if(assignment){
-      if(assignment.isComplete == true){
-        assignment.isComplete = false;
-      } else {
-        assignment.isComplete = true;
-      }
-    }
+    this.assignments.update(assignments =>
+      assignments.map(a => a.id === id ? {...a, isComplete: !a.isComplete} : a)
+    );
   }
 }

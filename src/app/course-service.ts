@@ -24,6 +24,10 @@ export class CourseService {
     this.courses.update(courses => [...courses,newCourse]);
   }
 
+  deleteCourse(id: number){
+    this.courses.update(courses => courses.filter(t => t.id !== id));
+  }
+
   updateCourseNumber(id: number, newCourseNumber: string){
     this.courses.update(courses =>
       courses.map(c => c.id === id ? {...c, courseNumber: newCourseNumber} : c)
